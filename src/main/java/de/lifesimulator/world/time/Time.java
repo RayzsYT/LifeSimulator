@@ -2,8 +2,6 @@ package de.lifesimulator.world.time;
 
 import de.lifesimulator.utils.helper.FormatHelper;
 
-import java.text.NumberFormat;
-
 public class Time {
 
     private final Week[] week = { Week.MONDAY, Week.TUESDAY, Week.WEDNESDAY, Week.THURSDAY, Week.FRIDAY, Week.SATURDAY, Week.SUNDAY };
@@ -16,7 +14,7 @@ public class Time {
 
     seconds = 0,
             minutes = 0,
-            hours = 23,
+            hours = 0,
 
     days = 1,
             months = 1,
