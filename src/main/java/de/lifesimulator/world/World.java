@@ -1,9 +1,8 @@
 package de.lifesimulator.world;
 
 import de.lifesimulator.world.time.Time;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 public class World {
 
@@ -11,7 +10,7 @@ public class World {
     private final Time time;
     private final List<Thread> threads = new ArrayList<>();
 
-    public static World createWorld(String worldName) {
+    public static World createWorld(String worldName) throws IOException {
         return new World(worldName);
     }
 
@@ -19,18 +18,18 @@ public class World {
         this.worldName = worldName;
         this.time = new Time();
         this.threads.add(time.createThread());
+
+
         this.threads.add(new Thread(() -> {
             while(true) {
-                System.out.println(time);
                 try {
+                    System.out.write(("\r" + time).getBytes());
                     Thread.sleep(500);
-                } catch (InterruptedException exception) {
-                    exception.printStackTrace();
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
                 }
             }
         }));
-
-        time.setTimeSpeed(0.00000001);
 
         this.threads.forEach(Thread::start);
     }
