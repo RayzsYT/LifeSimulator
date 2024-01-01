@@ -1,5 +1,9 @@
 package de.lifesimulator.world.time;
 
+import de.lifesimulator.utils.helper.FormatHelper;
+
+import java.text.NumberFormat;
+
 public class Time {
 
     private final Week[] week = { Week.MONDAY, Week.TUESDAY, Week.WEDNESDAY, Week.THURSDAY, Week.FRIDAY, Week.SATURDAY, Week.SUNDAY };
@@ -39,11 +43,11 @@ public class Time {
         return run;
     }
 
-    public void stopTime() {
+    public void stop() {
         run = false;
     }
 
-    public void resumeTime() {
+    public void resume() {
         run = true;
     }
 
@@ -96,7 +100,7 @@ public class Time {
 
     @Override
     public String toString() {
-        return "Day=" + day.name() + "," + "Date=" + days + "." + months + "." + years + ",Clock=" + seconds + ":" + minutes + ":" + hours;
+        return "Day=" + day.name() + "," + "Date=" + FormatHelper.formatInteger(days) + "." + FormatHelper.formatInteger(months) + "." + FormatHelper.formatInteger(years) + ",Clock=" + FormatHelper.formatInteger(seconds) + ":" + FormatHelper.formatInteger(minutes) + ":" + FormatHelper.formatInteger(hours);
     }
 
     public enum Week { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
